@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle} from "./ui/card"
+import { Badge } from "./ui/badge"
 import { Briefcase, Calendar, Users } from "lucide-react"
 import Image from "next/image"
 import { CodeBackground } from "./code-background"
@@ -64,7 +64,7 @@ export function ExperienceSection() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0" />
-                    <span>Contributed directly to Google's campus-led AI initiatives in India</span>
+                    <span>Contributed directly to Google&aposs campus-led AI initiatives in India</span>
                   </li>
                 </ul>
               </div>
