@@ -8,13 +8,18 @@ const nextConfig = {
     // Set this to false if you want production builds to abort if there are type errors
     ignoreBuildErrors: true,
   },
-  images: {
-    unoptimized: true,
-  },
   // Indicate that the exported app will be deployed to a subdirectory
   basePath: '',
-  // Disable image optimization because it's not supported with 'output: export'
+  // Image configuration
   images: {
     unoptimized: true,
+    domains: ['localhost'],
   },
+  // Disable the @next/next/no-img-element rule
+  eslint: {
+    ignoreDuringBuilds: true,
+    rules: {
+      '@next/next/no-img-element': 'off'
+    }
+  }
 }

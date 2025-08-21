@@ -1,20 +1,20 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { Menu, X } from "lucide-react"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("")
 
-  const navItems = [
+  const navItems = useMemo(() => [
     { name: "Technical Skills", href: "#skills" },
     { name: "Education", href: "#education" },
     { name: "Experience", href: "#experience" },
     { name: "Featured Projects", href: "#projects" },
     { name: "Honors & Awards", href: "#honors" },
     { name: "Certifications", href: "#certifications" },
-  ]
+  ], [])
 
   useEffect(() => {
     const handleScroll = () => {
