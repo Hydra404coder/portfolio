@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { CodeBackground } from "./code-background"
 
@@ -79,6 +79,10 @@ export function SkillsSection() {
   const [visibleCards, setVisibleCards] = useState<boolean[]>(new Array(skillCategories.length).fill(false))
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
 
+  const setCardRef = useCallback((el: HTMLDivElement | null, index: number) => {
+    cardRefs.current[index] = el
+  }, [])
+
   useEffect(() => {
     const observers = cardRefs.current.map((ref, index) => {
       if (!ref) return null
@@ -123,7 +127,7 @@ export function SkillsSection() {
           {skillCategories.map((category, categoryIndex) => (
             <Card
               key={category.title}
-              ref={(el) => (cardRefs.current[categoryIndex] = el)}
+              ref={(el) => setCardRef(el, categoryIndex)}
               className="bg-card/50 backdrop-blur-sm border-accent/20 hover:border-accent/40 transition-all duration-300 hover:shadow-lg hover:shadow-accent/10"
             >
               <CardHeader>
