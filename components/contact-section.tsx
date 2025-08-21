@@ -33,14 +33,22 @@ export function ContactSection() {
     setLoading(true)
     setSuccess(false)
 
-    const { error } = await supabase.from("messages").insert([formData])
+    try {
+      if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+        throw new Error("Contact form is currently unavailable. Please use email instead.")
+      }
 
-    if (error) {
-      console.error("Supabase insert error:", error)
-      alert("❌ Something went wrong. Please try again.")
-    } else {
+      const { error } = await supabase.from("messages").insert([formData])
+
+      if (error) {
+        throw error
+      }
+
       setSuccess(true)
       setFormData({ name: "", email: "", message: "" })
+    } catch (error) {
+      console.error("Form submission error:", error)
+      alert("❌ " + (error instanceof Error ? error.message : "Something went wrong. Please try again or use email instead."))
     }
 
     setLoading(false)
