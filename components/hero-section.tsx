@@ -1,15 +1,23 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "./ui/button"
 import { Github, Linkedin, Code, Mail, Phone, MapPin } from "lucide-react"
-import { CodeBackground } from "./code-background"
+import dynamic from "next/dynamic"
+
+// Lazy-load CodeBackground (no SSR, loads after main UI)
+const CodeBackground = dynamic(
+  () => import("./code-background").then((m) => m.CodeBackground),
+  { ssr: false, loading: () => null }
+)
 
 export function HeroSection() {
   const [displayText, setDisplayText] = useState("")
   const [scrollY, setScrollY] = useState(0)
+  const tickingRef = useRef(false)
   const fullText = "Software Developer AI, Web, and Data Systems"
 
+  // Typewriter effect
   useEffect(() => {
     let i = 0
     const timer = setInterval(() => {
@@ -20,13 +28,21 @@ export function HeroSection() {
         clearInterval(timer)
       }
     }, 100)
-
     return () => clearInterval(timer)
   }, [])
 
+  // Throttled scroll listener
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener("scroll", handleScroll)
+    const handleScroll = () => {
+      if (!tickingRef.current) {
+        tickingRef.current = true
+        requestAnimationFrame(() => {
+          setScrollY(window.scrollY)
+          tickingRef.current = false
+        })
+      }
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
