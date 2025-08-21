@@ -1,7 +1,7 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
+import { Badge } from "./ui/badge"
 import { BadgeIcon as Certificate, Brain, BarChart3, Zap, ExternalLink } from "lucide-react"
 import { useState, useEffect } from "react"
 import { CodeBackground } from "./code-background"
@@ -115,7 +115,7 @@ export function CertificationsSection() {
 
   useEffect(() => {
     const generateBinary = () => {
-      const strings = []
+      const strings: string[] = []
       for (let i = 0; i < 20; i++) {
         let binary = ""
         for (let j = 0; j < 8; j++) {

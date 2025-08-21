@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
+import { Button } from "./ui/button"
 import { Github, Linkedin, Code, Mail, Phone, MapPin } from "lucide-react"
 import { CodeBackground } from "./code-background"
 
