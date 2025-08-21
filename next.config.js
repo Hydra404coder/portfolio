@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',  // Enable static exports
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -8,9 +9,12 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ['localhost'],
+    unoptimized: true,
+  },
+  // Indicate that the exported app will be deployed to a subdirectory
+  basePath: '',
+  // Disable image optimization because it's not supported with 'output: export'
+  images: {
     unoptimized: true,
   },
 }
-
-module.exports = nextConfig

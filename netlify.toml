@@ -1,6 +1,10 @@
 [build]
   command = "npm run build"
-  publish = ".next"
+  publish = "out"
 
 [build.environment]
   SECRETS_SCAN_ENABLED = "false"
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+
+[build.processing]
+  skip_processing = true
