@@ -65,7 +65,7 @@ export function ContactSection() {
             Get In Touch
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Let's discuss opportunities, collaborations, or innovative projects
+            Let&apos;s discuss opportunities, collaborations, or innovative projects
           </p>
         </div>
 

@@ -43,7 +43,7 @@ export function Navigation() {
     handleScroll()
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [activeSection])
+  }, [activeSection, navItems])
 
   const scrollToSection = (href: string) => {
     const element = document.getElementById(href.substring(1))
